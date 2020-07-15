@@ -2,15 +2,12 @@ import { ApolloServer, gql } from "apollo-server-micro";
 import { makeExecutableSchema } from "graphql-tools";
 import { MongoClient } from "mongodb";
 
+import { todoDefs, todoResolvers } from "./todos";
+
 require("dotenv").config();
 
 const typeDefs = gql`
-  type Todo {
-    id: ID!
-    text: String!
-    completed: Boolean!
-    notes: String
-  }
+  ${todoDefs}
   type Query {
     todos: [Todo]!
   }
@@ -18,13 +15,8 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    todos(_parent, _args, _context, _info) {
-      return _context.db
-        .collection("todos")
-        .findOne()
-        .then((data) => {
-          return data.todos;
-        });
+    todos() {
+      return todoResolvers;
     },
   },
 };
@@ -56,11 +48,5 @@ const apolloServer = new ApolloServer({
     return { db };
   },
 });
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
 
 export default apolloServer.createHandler({ path: "/api/graphql" });

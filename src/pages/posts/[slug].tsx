@@ -9,6 +9,7 @@ export async function getStaticProps({ params }) {
     query PostPageQuery($slug: String!) {
       post(where: { slug: $slug }) {
         title
+        slug
       }
     }
   `,
@@ -25,19 +26,17 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const { post } = await graphcms.request(`
+  const { posts } = await graphcms.request(`
     {
-      post {
+      posts {
         slug
         title
       }
     }
   `);
 
-  console.log(post);
-
   return {
-    paths: post.map(({ slug }) => ({
+    paths: posts.map(({ slug }) => ({
       params: { slug },
     })),
     fallback: false,

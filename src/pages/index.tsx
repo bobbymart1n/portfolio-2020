@@ -28,7 +28,7 @@ export default ({ posts }) => {
   return (
     <div className='container'>
       <Head>
-        <title>Create Next App</title>
+        <title>Bobby Martin | Front End Engineer</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 

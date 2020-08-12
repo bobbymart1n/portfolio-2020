@@ -52,7 +52,7 @@ export async function getStaticPaths() {
 export default ({ post }) => (
   <Fragment>
     <h1>{post.title}</h1>
-    <img src={post.coverImage.url} alt='cover image' />
+    {post.coverImage && <img src={post.coverImage.url} alt='cover image' />}
     <p>{post.content.text}</p>
   </Fragment>
 );

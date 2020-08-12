@@ -1,6 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import styled from 'styled-components';
 import { GraphQLClient } from 'graphql-request';
+
+import Card from '../components/Card/Card';
 
 export async function getStaticProps() {
   const graphCMS = new GraphQLClient(process.env.GRAPHCMS_URI);
@@ -24,72 +27,49 @@ export async function getStaticProps() {
   };
 }
 
+const Container = styled.div`
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Main = styled.main`
+  padding: 5rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Footer = styled.footer`
+  width: 100%;
+  height: 100px;
+  border-top: 1px solid #eaeaea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default ({ posts }) => {
   return (
-    <div className='container'>
+    <Container className='container'>
       <Head>
         <title>Bobby Martin | Front End Engineer</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main>
+      <Main>
         {posts &&
           posts.map(({ title, slug }) => (
-            <Link key={slug} href={`/posts/${slug}`}>
-              <a>{title}</a>
-            </Link>
+            <Card key={slug} title={title} slug={slug} />
           ))}
-      </main>
-
-      <footer>
-        <a
-          href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Powered by{' '}
-          <img src='/vercel.svg' alt='Vercel Logo' className='logo' />
-        </a>
-      </footer>
+      </Main>
 
       <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
         a {
           color: inherit;
           text-decoration: none;
@@ -197,6 +177,6 @@ export default ({ posts }) => {
           box-sizing: border-box;
         }
       `}</style>
-    </div>
+    </Container>
   );
 };

@@ -1,13 +1,17 @@
-import { ApolloServer, gql } from "apollo-server-micro";
-import { makeExecutableSchema } from "graphql-tools";
-import { MongoClient } from "mongodb";
+import { ApolloServer, gql } from 'apollo-server-micro';
+import { makeExecutableSchema } from 'graphql-tools';
+import { MongoClient } from 'mongodb';
 
-import { todoDefs, todoResolvers } from "./todos";
-
-require("dotenv").config();
+require('dotenv').config();
 
 const typeDefs = gql`
-  ${todoDefs}
+  type Todo {
+    id: ID!
+    text: String!
+    completed: Boolean!
+    notes: String
+  }
+
   type Query {
     todos: [Todo]!
   }
@@ -15,8 +19,13 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    todos() {
-      return todoResolvers;
+    todos(_parent, _args, _context, _info) {
+      return _context.db
+        .collection('todos')
+        .findOne()
+        .then((data) => {
+          return data.todos;
+        });
     },
   },
 };
@@ -40,13 +49,19 @@ const apolloServer = new ApolloServer({
 
         if (!dbClient.isConnected()) await dbClient.connect();
 
-        db = dbClient.db("next-graphql"); // DB name
+        db = dbClient.db('next-graphql'); // DB name
       } catch (e) {
-        console.log("Error while connecting with graphql context(db)", e);
+        console.log('Error while connecting with graphql context(db)', e);
       }
     }
     return { db };
   },
 });
 
-export default apolloServer.createHandler({ path: "/api/graphql" });
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+export default apolloServer.createHandler({ path: '/api/graphql' });

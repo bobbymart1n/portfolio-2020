@@ -10,6 +10,12 @@ export async function getStaticProps({ params }) {
       post(where: { slug: $slug }) {
         title
         slug
+        content {
+          text
+        }
+        coverImage {
+          url
+        }
       }
     }
   `,
@@ -46,5 +52,7 @@ export async function getStaticPaths() {
 export default ({ post }) => (
   <Fragment>
     <h1>{post.title}</h1>
+    <img src={post.coverImage.url} alt='cover image' />
+    <p>{post.content.text}</p>
   </Fragment>
 );

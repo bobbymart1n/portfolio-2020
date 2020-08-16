@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from 'styled-components';
 
 const StyledLayout = styled.section`
   height: 100%;
@@ -6,4 +6,22 @@ const StyledLayout = styled.section`
   margin: 0 auto;
 `;
 
-export { StyledLayout };
+const StyledLayoutBackground = createGlobalStyle`
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  }
+
+  body {
+    background: ${(props) => props.theme.background}
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+`;
+
+export { StyledLayout, StyledLayoutBackground };

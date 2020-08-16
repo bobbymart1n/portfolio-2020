@@ -1,15 +1,16 @@
-import React from "react";
-import Head from "next/head";
-import PropTypes from "prop-types";
+import React from 'react';
+import Head from 'next/head';
+import PropTypes from 'prop-types';
 
-import { StyledLayout } from "./Layout.styles";
+import { StyledLayout, StyledLayoutBackground } from './Layout.styles';
 
-const Layout = ({ children }) => (
+const Layout = ({ children, theme }) => (
   <StyledLayout>
     <Head>
       <title>Bobby Martin | Front End Engineer</title>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel='icon' href='/favicon.ico' />
     </Head>
+    <StyledLayoutBackground theme={theme} />
     {children}
   </StyledLayout>
 );

@@ -1,12 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
 
-const Card = ({ slug, title }) => (
-  <div>
+import { StyledCard, StyledCardHeading, StyledCardDate } from './Card.styles';
+
+const Card = ({ date, excerpt, slug, title }) => (
+  <StyledCard>
+    <StyledCardHeading>{title}</StyledCardHeading>
+    <StyledCardDate>{date.split('-').reverse().join('.')}</StyledCardDate>
+    <p>{excerpt}</p>
     <Link key={slug} href={`/posts/${slug}`}>
-      <a>{title}</a>
+      <a>Read more</a>
     </Link>
-  </div>
+  </StyledCard>
 );
 
 export default Card;

@@ -7,8 +7,14 @@ import { StyledPostList } from './PostList.styles';
 const PostList = ({ posts }) => (
   <StyledPostList>
     {posts &&
-      posts.map(({ title, slug }) => (
-        <Card key={slug} title={title} slug={slug} />
+      posts.map(({ title, slug, date, excerpt }) => (
+        <Card
+          key={slug}
+          excerpt={excerpt}
+          title={title}
+          slug={slug}
+          date={date}
+        />
       ))}
   </StyledPostList>
 );

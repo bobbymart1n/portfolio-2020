@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 const StyledLayout = styled.section`
-  height: 100%;
+  height: 100vh;
   max-width: 1080px;
   margin: 0 auto;
   color: ${(props) => props.theme.colors.light};

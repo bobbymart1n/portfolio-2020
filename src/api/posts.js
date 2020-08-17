@@ -10,6 +10,7 @@ export const getPosts = async () => {
         id
         slug
         title
+        date
       }
     }
   `,

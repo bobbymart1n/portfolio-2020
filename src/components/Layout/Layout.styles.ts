@@ -4,9 +4,14 @@ const StyledLayout = styled.section`
   height: 100%;
   max-width: 1080px;
   margin: 0 auto;
+  color: ${(props) => props.theme.colors.light};
+
+  a {
+    color: ${(props) => props.theme.colors.light};
+  }
 `;
 
-const StyledLayoutBackground = createGlobalStyle`
+const StyledLayoutGlobal = createGlobalStyle`
   html,
   body {
     padding: 0;
@@ -16,7 +21,7 @@ const StyledLayoutBackground = createGlobalStyle`
   }
 
   body {
-    background: ${(props) => props.theme.background}
+    background: ${(props) => props.theme.background};
   }
 
   * {
@@ -24,4 +29,4 @@ const StyledLayoutBackground = createGlobalStyle`
   }
 `;
 
-export { StyledLayout, StyledLayoutBackground };
+export { StyledLayout, StyledLayoutGlobal };

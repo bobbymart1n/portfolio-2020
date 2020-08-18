@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StyledCard = styled.div`
-  max-width: 50%;
+  width: 100%;
 `;
 
 const StyledCardHeading = styled.h3``;

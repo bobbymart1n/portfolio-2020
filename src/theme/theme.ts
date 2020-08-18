@@ -4,5 +4,6 @@ export const theme: DefaultTheme = {
   background: '#1F1F1F',
   colors: {
     light: '#FFFFFF',
+    dark: '#1F1F1F',
   },
 };

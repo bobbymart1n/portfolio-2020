@@ -9,6 +9,7 @@ export const getPortfolioPieces = async () => {
       portfolioPieces {
         id
         title
+        slug
         projectHighlights
         projectLink
         screenshot {

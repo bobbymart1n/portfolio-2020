@@ -19,6 +19,7 @@ export default ({ posts, portfolioPieces }) => (
 export async function getStaticProps() {
   const posts = await getPosts();
   const portfolioPieces = await getPortfolioPieces();
+  console.log(portfolioPieces);
 
   return {
     props: {

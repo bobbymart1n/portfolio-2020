@@ -8,8 +8,8 @@ export async function getStaticProps({ params }) {
     `
     query PortfolioPiecePageQuery($slug: String!) {
       portfolioPiece(where: { slug: $slug }) {
-        id
         title
+        slug
         projectHighlights
         projectLink
         screenshot {
@@ -31,9 +31,9 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const { portfolioPiece } = await graphcms.request(`
+  const { portfolioPieces } = await graphcms.request(`
     {
-      posts {
+      portfolioPieces {
         slug
         title
       }
@@ -41,7 +41,7 @@ export async function getStaticPaths() {
   `);
 
   return {
-    paths: portfolioPiece.map(({ slug }) => ({
+    paths: portfolioPieces.map(({ slug }) => ({
       params: { slug },
     })),
     fallback: false,

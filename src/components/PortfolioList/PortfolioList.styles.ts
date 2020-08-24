@@ -4,4 +4,8 @@ const StyledPortfolioList = styled.div`
   width: 50%;
 `;
 
-export { StyledPortfolioList };
+const StyledPortfolioListImage = styled.img`
+  max-width: 100%;
+`;
+
+export { StyledPortfolioList, StyledPortfolioListImage };

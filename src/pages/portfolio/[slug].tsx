@@ -1,5 +1,9 @@
-import { Fragment } from 'react';
 import { GraphQLClient } from 'graphql-request';
+
+import {
+  StyledPortfolioPiece,
+  StyledPortfolioPieceImage,
+} from './Portfolio.styles';
 
 const graphcms = new GraphQLClient(process.env.GRAPHCMS_URI);
 
@@ -49,12 +53,15 @@ export async function getStaticPaths() {
 }
 
 export default ({ portfolioPiece }) => (
-  <Fragment>
+  <StyledPortfolioPiece>
     <h1>{portfolioPiece.title}</h1>
     {portfolioPiece.screenshot && (
-      <img src={portfolioPiece.screenshot.url} alt='cover image' />
+      <StyledPortfolioPieceImage
+        src={portfolioPiece.screenshot[0].url}
+        alt='cover image'
+      />
     )}
     <p>{portfolioPiece.projectHighlights}</p>
     <a>{portfolioPiece.projectLink}</a>
-  </Fragment>
+  </StyledPortfolioPiece>
 );

@@ -1,13 +1,15 @@
+import { GetStaticProps, GetStaticPaths } from 'next';
 import { GraphQLClient } from 'graphql-request';
 
 import {
   StyledPortfolioPiece,
+  StyledPortfolioPieceDescription,
   StyledPortfolioPieceImage,
 } from './Portfolio.styles';
 
 const graphcms = new GraphQLClient(process.env.GRAPHCMS_URI);
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { portfolioPiece } = await graphcms.request(
     `
     query PortfolioPiecePageQuery($slug: String!) {
@@ -32,9 +34,9 @@ export async function getStaticProps({ params }) {
       portfolioPiece,
     },
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const { portfolioPieces } = await graphcms.request(`
     {
       portfolioPieces {
@@ -50,18 +52,20 @@ export async function getStaticPaths() {
     })),
     fallback: false,
   };
-}
+};
 
 export default ({ portfolioPiece }) => (
   <StyledPortfolioPiece>
-    <h1>{portfolioPiece.title}</h1>
     {portfolioPiece.screenshot && (
       <StyledPortfolioPieceImage
         src={portfolioPiece.screenshot[0].url}
         alt='cover image'
       />
     )}
-    <p>{portfolioPiece.projectHighlights}</p>
-    <a>{portfolioPiece.projectLink}</a>
+    <StyledPortfolioPieceDescription>
+      <h1>{portfolioPiece.title}</h1>
+      <p>{portfolioPiece.projectHighlights}</p>
+      <a>{portfolioPiece.projectLink}</a>
+    </StyledPortfolioPieceDescription>
   </StyledPortfolioPiece>
 );

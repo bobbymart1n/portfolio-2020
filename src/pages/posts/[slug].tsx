@@ -1,9 +1,10 @@
+import { GetStaticProps, GetStaticPaths } from 'next';
 import { Fragment } from 'react';
 import { GraphQLClient } from 'graphql-request';
 
 const graphcms = new GraphQLClient(process.env.GRAPHCMS_URI);
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { post } = await graphcms.request(
     `
     query PostPageQuery($slug: String!) {
@@ -29,9 +30,9 @@ export async function getStaticProps({ params }) {
       post,
     },
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const { posts } = await graphcms.request(`
     {
       posts {
@@ -47,7 +48,7 @@ export async function getStaticPaths() {
     })),
     fallback: false,
   };
-}
+};
 
 export default ({ post }) => (
   <Fragment>

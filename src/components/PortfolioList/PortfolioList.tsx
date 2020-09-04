@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { FC, Fragment } from 'react';
 import Link from 'next/link';
 
 import {
@@ -6,19 +6,31 @@ import {
   StyledPortfolioListImage,
 } from './PortfolioList.styles';
 
-const PortfolioList = ({ portfolioPieces }) => (
+type Props = {
+  portfolioPieces: any[];
+};
+
+type Screenshot = {
+  url: string;
+};
+
+type PortfolioPiece = {
+  id: string;
+  slug: string;
+  screenshot: Screenshot[];
+  title: string;
+};
+
+const PortfolioList: FC<Props> = ({ portfolioPieces }) => (
   <StyledPortfolioList>
     <h3>My latest project:</h3>
     {portfolioPieces &&
-      portfolioPieces.map((piece) => (
-        <Fragment key={piece.id}>
-          <Link href={`/portfolio/${piece.slug}`}>
-            <StyledPortfolioListImage
-              src={piece.screenshot[0].url}
-              alt={piece.title}
-            />
+      portfolioPieces.map(({ id, slug, screenshot, title }: PortfolioPiece) => (
+        <Fragment key={id}>
+          <Link href={`/portfolio/${slug}`}>
+            <StyledPortfolioListImage src={screenshot[0].url} alt={title} />
           </Link>
-          <div key={piece.id}>{piece.title}</div>
+          <div key={id}>{title}</div>
         </Fragment>
       ))}
   </StyledPortfolioList>

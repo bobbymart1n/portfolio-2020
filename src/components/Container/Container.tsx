@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { StyledContainer } from './Container.styles';
 
-const Container = ({ children }) => (
+type Props = {
+  children: React.ReactNode;
+};
+
+const Container: FC<Props> = ({ children }) => (
   <StyledContainer>{children}</StyledContainer>
 );
 

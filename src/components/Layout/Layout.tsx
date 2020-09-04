@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Head from 'next/head';
-import PropTypes from 'prop-types';
 
 import { StyledLayout, StyledLayoutGlobal } from './Layout.styles';
 
-const Layout = ({ children }) => (
+type Props = {
+  children: React.ReactNode;
+};
+
+const Layout: FC<Props> = ({ children }) => (
   <StyledLayout>
     <Head>
       <title>Bobby Martin | Front End Engineer</title>
@@ -14,12 +17,5 @@ const Layout = ({ children }) => (
     {children}
   </StyledLayout>
 );
-
-Layout.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-};
 
 export default Layout;

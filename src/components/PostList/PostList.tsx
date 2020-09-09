@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import Card from 'components/Card/Card';
 
 import { StyledPostList } from './PostList.styles';
 
-const PostList = ({ posts }) => (
+type Posts = {
+  title: string;
+  slug: string;
+  date: string;
+  excerpt: string;
+};
+
+type Props = {
+  posts: Posts[];
+};
+
+const PostList: FC<Props> = ({ posts }) => (
   <StyledPostList>
     {posts &&
       posts.map(({ title, slug, date, excerpt }) => (

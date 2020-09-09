@@ -11,8 +11,8 @@ const StyledSocialsIcon = styled.div`
   height: 36px;
   width: 36px;
   border-radius: 50%;
-  color: ${(props) => props.theme.colors.dark};
-  background: ${(props) => props.theme.colors.light};
+  /* color: ${(props) => props.theme.colors.dark}; */
+  /* background: ${(props) => props.theme.colors.light}; */
   margin-right: 16px;
 
   &:last-of-type {

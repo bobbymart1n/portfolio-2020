@@ -1,8 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import {
   StyledSocials,
@@ -18,13 +17,13 @@ const Socials = () => (
     </StyledSocialsHeading>
     <StyledSocialsIconContainer>
       <StyledSocialsIcon>
-        <FontAwesomeIcon icon={faGithub} size='sm' />
+        <FontAwesomeIcon icon={faGithub} size='xs' fixedWidth inverse />
       </StyledSocialsIcon>
       <StyledSocialsIcon>
-        <FontAwesomeIcon icon={faLinkedin} size='sm' />
+        <img src='linkedin.svg' alt='connect with me on linkedin' />
       </StyledSocialsIcon>
       <StyledSocialsIcon>
-        <FontAwesomeIcon icon={faEnvelope} size='sm' />
+        <img src='email.svg' alt='email me' />
       </StyledSocialsIcon>
     </StyledSocialsIconContainer>
   </StyledSocials>

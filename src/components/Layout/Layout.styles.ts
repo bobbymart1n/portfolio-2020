@@ -4,10 +4,10 @@ const StyledLayout = styled.section`
   height: 100vh;
   max-width: 1080px;
   margin: 0 auto;
-  color: ${(props) => props.theme.colors.light};
+  color: ${(props) => props.theme.colors.dark};
 
   a {
-    color: ${(props) => props.theme.colors.light};
+    color: ${(props) => props.theme.colors.dark};
   }
 `;
 

@@ -23,7 +23,7 @@ type PortfolioPiece = {
 
 const PortfolioList: FC<Props> = ({ portfolioPieces }) => (
   <StyledPortfolioList>
-    <h3>My latest project:</h3>
+    <h3>Latest project:</h3>
     {portfolioPieces &&
       portfolioPieces.map(({ id, slug, screenshot, title }: PortfolioPiece) => (
         <Fragment key={id}>

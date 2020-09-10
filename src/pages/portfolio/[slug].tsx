@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { GraphQLClient } from 'graphql-request';
 
 import {
-  StyledPortfolioPiece,
-  StyledPortfolioPieceCloseButton,
-  StyledPortfolioPieceDescription,
-  StyledPortfolioPieceImage,
-} from './Portfolio.styles';
+  StyledPortfolioPagePiece,
+  StyledPortfolioPagePieceCloseButton,
+  StyledPortfolioPagePieceDescription,
+  StyledPortfolioPagePieceImage,
+} from 'components/PortfolioPage/PortfolioPage.styles';
 
 const graphcms = new GraphQLClient(process.env.GRAPHCMS_URI);
 
@@ -56,25 +56,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const onClose = () => {
-  return;
-};
-
 export default ({ portfolioPiece }) => (
-  <StyledPortfolioPiece>
+  <StyledPortfolioPagePiece>
     <Link href='/'>
-      <StyledPortfolioPieceCloseButton />
+      <StyledPortfolioPagePieceCloseButton />
     </Link>
     {portfolioPiece.screenshot && (
-      <StyledPortfolioPieceImage
+      <StyledPortfolioPagePieceImage
         src={portfolioPiece.screenshot[0].url}
         alt='cover image'
       />
     )}
-    <StyledPortfolioPieceDescription>
+    <StyledPortfolioPagePieceDescription>
       <h1>{portfolioPiece.title}</h1>
       <p>{portfolioPiece.projectHighlights}</p>
       <a>{portfolioPiece.projectLink}</a>
-    </StyledPortfolioPieceDescription>
-  </StyledPortfolioPiece>
+    </StyledPortfolioPagePieceDescription>
+  </StyledPortfolioPagePiece>
 );

@@ -6,6 +6,7 @@ const StyledPortfolioList = styled.div`
 
 const StyledPortfolioListImage = styled.img`
   max-width: 100%;
+  margin-left: -18px;
 `;
 
 export { StyledPortfolioList, StyledPortfolioListImage };

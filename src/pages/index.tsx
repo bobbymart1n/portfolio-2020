@@ -36,8 +36,8 @@ export default ({ posts, portfolioPieces }: Props) => (
   <Fragment>
     <Socials />
     <Container>
-      <PostList posts={posts} />
       <PortfolioList portfolioPieces={portfolioPieces} />
+      <PostList posts={posts} />
     </Container>
   </Fragment>
 );

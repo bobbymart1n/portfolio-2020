@@ -1,8 +1,10 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
+import Link from 'next/link';
 import { GraphQLClient } from 'graphql-request';
 
 import {
   StyledPortfolioPiece,
+  StyledPortfolioPieceCloseButton,
   StyledPortfolioPieceDescription,
   StyledPortfolioPieceImage,
 } from './Portfolio.styles';
@@ -54,8 +56,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
+const onClose = () => {
+  return;
+};
+
 export default ({ portfolioPiece }) => (
   <StyledPortfolioPiece>
+    <Link href='/'>
+      <StyledPortfolioPieceCloseButton />
+    </Link>
     {portfolioPiece.screenshot && (
       <StyledPortfolioPieceImage
         src={portfolioPiece.screenshot[0].url}

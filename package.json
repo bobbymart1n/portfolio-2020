@@ -20,7 +20,7 @@
     "graphql": "^15.3.0",
     "graphql-request": "^3.0.0",
     "graphql-tools": "^6.0.12",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "mongodb": "^3.5.9",
     "next": "9.4.4",
     "react": "16.13.1",
